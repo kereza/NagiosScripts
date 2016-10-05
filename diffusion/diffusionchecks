@@ -1,0 +1,18 @@
+#!/bin/sh
+#
+# Nagios plugin to monitor Java JMX (http://java.sun.com/jmx)attributes.
+#
+JMX_ENDPOINT="service:jmx:rmi:///jndi/rmi://10.92.130.21:1099/jmxrmi"
+USERNAME="guest"
+PASSWORD="Guest"
+./check_jmx -U $JMX_ENDPOINT -username $USERNAME -password $PASSWORD -O "com.pushtechnology.diffusion.metrics:type=server,name=clients.concurrent" -A "Count" 
+./check_jmx -U $JMX_ENDPOINT -username $USERNAME -password $PASSWORD -O "com.pushtechnology.diffusion.metrics:type=server,name=clients.concurrent_max" -A "Value" 
+./check_jmx -U $JMX_ENDPOINT -username $USERNAME -password $PASSWORD -O "com.pushtechnology.diffusion.metrics:type=server,name=clients.connections" -A "Count" 
+./check_jmx -U $JMX_ENDPOINT -username $USERNAME -password $PASSWORD -O "com.pushtechnology.diffusion.metrics:type=server,name=clients.disconnections" -A "Count" 
+./check_jmx -U $JMX_ENDPOINT -username $USERNAME -password $PASSWORD -O "com.pushtechnology.diffusion.metrics:type=server,name=topics.additions" -A "Count" 
+./check_jmx -U $JMX_ENDPOINT -username $USERNAME -password $PASSWORD -O "com.pushtechnology.diffusion.metrics:type=server,name=topics.deletions" -A "Count" 
+./check_jmx -U $JMX_ENDPOINT -username $USERNAME -password $PASSWORD -O "com.pushtechnology.diffusion.metrics:type=server,name=topics.count" -A "Count" 
+./check_jmx -U $JMX_ENDPOINT -username $USERNAME -password $PASSWORD -O "com.pushtechnology.diffusion.metrics:name=sportsbook.outbound.bytes,type=publishers" -A "Count" 
+./check_jmx -U $JMX_ENDPOINT -username $USERNAME -password $PASSWORD -O "com.pushtechnology.diffusion.metrics:name=sportsbook.outbound.messages,type=publishers" -A "Count" 
+./check_jmx -U $JMX_ENDPOINT -username $USERNAME -password $PASSWORD -O "java.lang:type=Memory" -A "HeapMemoryUsage" -K "used"
+./check_jmx -U $JMX_ENDPOINT -username $USERNAME -password $PASSWORD -O "com.pushtechnology.diffusion.metrics:type=publishers,name=Diffusion.clients" -A "Count" 
